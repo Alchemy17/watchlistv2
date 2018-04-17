@@ -1,0 +1,26 @@
+{% extends 'base.html'%}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{%block styles%}
+  {{super()}}
+  
+  <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{url_for('static',filename='index.css')}}">
+{%endblock%}
+{% block content %}
+    <div class="container">
+
+        <div class="movie-group col-md-8">
+
+            <img src="{{movie.movie_image}}" alt="{{movie.movie_title}}" class="img-responsive">
+        </div>
+
+        <div class="col-md-4">
+
+            {{ wtf.quick_form(review_form) }}
+        </div>
+
+    </div>
+
+{% endblock %}

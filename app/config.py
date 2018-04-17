@@ -1,3 +1,5 @@
+import os
+
 class Config:
     '''
     Parent configuration class that will hold universal configurations
@@ -5,9 +7,11 @@ class Config:
     '''
     
     MOVIE_BASE_URL = 'https://api.themoviedb.org/3/movie/{}?api_key={}'
+    MOVIE_SEARCH_BASE_URL='https://api.themoviedb.org/3/search/movie?api_key={}&query={}'
+    MOVIE_API_KEY = os.environ.get('MOVIE_API_KEY')
+    SECRET_KEY = os.environ.get('SECRET_KEY')
 
-
-class ProductionConfig(Config):
+class ProdConfig(Config):
     '''
     Production configuration class that holds configurations for the production environment. It inherits the configuration properties of the config class
 
@@ -17,7 +21,7 @@ class ProductionConfig(Config):
     pass
 
 
-class DevelopmentConfig(Config):
+class DevConfig(Config):
     '''
     Development configuration class that holds configurations for the Development environment. It inherits the configuration properties of the config class
 
@@ -26,3 +30,8 @@ class DevelopmentConfig(Config):
     '''
 
     DEBUG = True
+
+config_options = {
+'development':DevConfig,
+'production':ProdConfig
+}
